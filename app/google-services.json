@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "919651890559-8799g92hd3rqgplm8gaqsmj7kit732dv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prosoft.controledeestoque",
+            "certificate_hash": "b5b8d1147623aa7dac3f93692d016af810245a15"
+          }
+        },
+        {
           "client_id": "919651890559-dph2ctklqfn7pkqd1he2ul4va492tti9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
