@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "919651890559",
+    "firebase_url": "https://controledeestoque-56351.firebaseio.com",
+    "project_id": "controledeestoque-56351",
+    "storage_bucket": "controledeestoque-56351.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919651890559:android:1ae8666ea6f71f0c",
+        "android_client_info": {
+          "package_name": "com.prosoft.controledeestoque"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919651890559-dph2ctklqfn7pkqd1he2ul4va492tti9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prosoft.controledeestoque",
+            "certificate_hash": "699ba96e96f9f6ce87259a7cc1d1a42f08bb56f9"
+          }
+        },
+        {
+          "client_id": "919651890559-fg4fo5eeenvpsb0j7dcmqiad3090e6s5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB86_fyL7iXEFqxvlmx3rgutUlBBmtuy9s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919651890559-fg4fo5eeenvpsb0j7dcmqiad3090e6s5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
