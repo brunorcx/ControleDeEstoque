@@ -1,8 +1,23 @@
 <resources>
-    <string name="app_name">ControleDeEstoque</string>
+    <string name="app_name">Controle De Estoque</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="email">e-mail</string>
+    <string name="senha">senha</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="usuario">Nome do usuário</string>
+    <string name="loja">Loja X</string>
+    <string name="usuario_email">usuario@email.com</string>
+    <string name="prosoft">ProSoft</string>
+    <string name="login_invalido">Email/Senha inválido</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_tela__principal">Tela_Principal</string>
+    <string name="login_sucesso">Login Sucesso</string>
+    <string name="msg_saida">Aperte 2 vezes em seguida para sair do aplicativo</string>
 </resources>

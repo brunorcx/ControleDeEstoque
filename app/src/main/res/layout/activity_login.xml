@@ -10,7 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,13 +25,32 @@
         <EditText
             android:id="@+id/email_edit_text"
             style="@style/Campos"
-            android:hint="e-mail" />
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/senha_edit_text"
             style="@style/Campos"
-            android:hint="Senha" />
+            android:hint="@string/senha"
+            android:inputType="textPassword"
+            android:singleLine="true"/>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_weight="2">
+        <Button
+            android:id="@+id/btn_entrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entrar"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 </LinearLayout>
