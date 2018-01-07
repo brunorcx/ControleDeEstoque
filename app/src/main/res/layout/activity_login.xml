@@ -4,10 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.prosoft.controledeestoque.LoginActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.prosoft.controledeestoque.LoginActivity">
 
-    <EditText
-        style="@style/Campos" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email_edit_text"
+            style="@style/Campos"
+            android:hint="e-mail" />
+
+        <EditText
+            android:id="@+id/senha_edit_text"
+            style="@style/Campos"
+            android:hint="Senha" />
+
+    </LinearLayout>
 
 </LinearLayout>
