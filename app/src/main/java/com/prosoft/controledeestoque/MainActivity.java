@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         im2.startAnimation(animation);
         t.startAnimation(animation);
         
-        //Ligar essa tela com a tela de login depois de 1500 millisegundo
+        //Ligar essa tela com a tela de login depois de 1500 millisegundos
         final Intent intent = new Intent(this, LoginActivity.class);
         Thread timer = new Thread(){
             @Override

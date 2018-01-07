@@ -5,52 +5,165 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/dk"
     tools:context="com.prosoft.controledeestoque.LoginActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:layout_width="200sp"
         android:layout_height="0dp"
-        android:layout_weight="1">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:layout_weight="2"/>
 
+    <!--Layout para login-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/email_edit_text"
-            style="@style/Campos"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:singleLine="true"/>
-
-        <EditText
-            android:id="@+id/senha_edit_text"
-            style="@style/Campos"
-            android:hint="@string/senha"
-            android:inputType="textPassword"
-            android:singleLine="true"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/layout_login"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:gravity="bottom"
-        android:layout_weight="2">
-        <Button
-            android:id="@+id/btn_entrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/entrar"
-            android:layout_gravity="center"/>
+        android:layout_weight="4"
+        style="@style/layout"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="2sp"
+            android:background="@color/escuro">
+
+            <EditText
+                android:id="@+id/login_email"
+                style="@style/Campos"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5sp"/>
+
+            <EditText
+                android:id="@+id/login_senha"
+                style="@style/Campos"
+                android:hint="@string/senha"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:drawableLeft="@android:drawable/ic_lock_lock"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5sp"/>
+
+            <CheckBox
+                android:id="@+id/chkBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mantenha_logado"
+                android:buttonTint="@color/black"
+                android:padding="5sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_entrar"
+                style="?android:attr/buttonStyleInset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/entrar" />
+
+            <Button
+                android:id="@+id/btn_login_cadastrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:text="@string/login_cadastrar"
+                android:textColor="@color/escuro"
+                android:textStyle="italic"
+                tools:capitalize="none"
+                tools:style="@style/Widget.AppCompat.Button.Small" />
+        </LinearLayout>
     </LinearLayout>
+
+    <!--Layout para cadastros-->
+    <LinearLayout
+        android:id="@+id/layout_cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="4"
+        style="@style/layout"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:padding="2sp"
+            android:background="@color/escuro">
+
+            <EditText
+                android:id="@+id/usuario_cadastro"
+                style="@style/Campos"
+                android:hint="@string/usuario"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:drawableLeft="@drawable/ic_p"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5sp"/>
+            <EditText
+                android:id="@+id/email_cadastro"
+                style="@style/Campos"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5sp"/>
+
+            <EditText
+                android:id="@+id/senha_cadastro"
+                style="@style/Campos"
+                android:hint="@string/senha"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:drawableLeft="@android:drawable/ic_lock_lock"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5sp"/>
+            <EditText
+                android:id="@+id/numero_cadastro"
+                style="@style/Campos"
+                android:hint="@string/telefone"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:drawableLeft="@android:drawable/stat_sys_phone_call"
+                android:drawableTint="@color/black"
+                android:drawablePadding="5sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_weight="0.9">
+
+            <Button
+                android:id="@+id/btn_cad"
+                style="?android:attr/buttonStyleInset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/btn_cadastrar" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </LinearLayout>

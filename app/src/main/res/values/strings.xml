@@ -7,8 +7,9 @@
     <string name="action_settings">Settings</string>
     <string name="email">e-mail</string>
     <string name="senha">senha</string>
+    <string name="telefone">número de celular</string>
     <string name="entrar">ENTRAR</string>
-    <string name="usuario">Nome do usuário</string>
+    <string name="usuario">nome do usuário</string>
     <string name="loja">Loja X</string>
     <string name="usuario_email">usuario@email.com</string>
     <string name="prosoft">ProSoft</string>
@@ -19,5 +20,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_tela__principal">Tela_Principal</string>
     <string name="login_sucesso">Login Sucesso</string>
-    <string name="msg_saida">Aperte 2 vezes em seguida para sair do aplicativo</string>
+    <string name="msg_saida">Aperte 2 vezes em seguida para sair</string>
+    <string name="mantenha_logado">Mantenha logado</string>
+    <string name="login_cadastrar">Criar uma conta aqui</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+    <string name="aviso_campo_vazio">Preencha todos os campos</string>
+    <string name="cadastro_sucesso">Cadastro bem sucedido</string>
 </resources>
