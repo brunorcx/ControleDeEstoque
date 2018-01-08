@@ -3,6 +3,7 @@ package com.prosoft.controledeestoque;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -23,10 +24,10 @@ public class Tela_Principal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela__principal);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,36 +36,35 @@ public class Tela_Principal extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     //Esse é para fazer com que a pessoa aperte duas vezes o botão para sair do aplicativo
     Boolean DuasVezes=false;
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             if(DuasVezes){
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                System.exit(0);
+                //Chamar a função para sair do aplicativo quando apertar duas vezes o botão de saída
+                action_sair();
             }
             Toast.makeText(this, R.string.msg_saida, Toast.LENGTH_SHORT).show();
+            //Quando apertar o botao para sair, o valor de DuasVezes será mudado para TRUE por 3segundos
             DuasVezes = true;
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    //Depois de 3segundos, o valor de DuasVezes será mudado para FALSE de novo
                     DuasVezes = false;
                 }
             }, 3000);
@@ -88,32 +88,51 @@ public class Tela_Principal extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.action_sair) {
+            //Função para sair do aplicativo
+            action_sair();
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_pag_inicial){
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_camera) {
             // Handle the camera action
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_config) {
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_reclamar) {
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.nav_sair) {
+            //Chamando a função para sair do aplicativo
+            action_sair();
+        }else if(id == R.id.nav_sobre) {
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    //Função para sair do aplicativo
+    public void action_sair(){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        System.exit(0);
     }
 }

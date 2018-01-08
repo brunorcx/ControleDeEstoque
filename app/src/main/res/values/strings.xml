@@ -4,26 +4,44 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <!--Campos-->
     <string name="email">e-mail</string>
     <string name="senha">senha</string>
     <string name="telefone">número de celular</string>
-    <string name="entrar">ENTRAR</string>
     <string name="usuario">nome do usuário</string>
+
+    <string name="nome_usuario">John Smith</string>
     <string name="loja">Loja X</string>
-    <string name="usuario_email">usuario@email.com</string>
+    <string name="usuario_email">john_smith@email.com</string>
+
     <string name="prosoft">ProSoft</string>
+
+    <!--Botões-->
+    <string name="entrar">ENTRAR</string>
     <string name="login_invalido">Email/Senha inválido</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="title_activity_tela__principal">Tela_Principal</string>
-    <string name="login_sucesso">Login Sucesso</string>
-    <string name="msg_saida">Aperte 2 vezes em seguida para sair</string>
     <string name="mantenha_logado">Mantenha logado</string>
     <string name="login_cadastrar">Criar uma conta aqui</string>
     <string name="btn_cadastrar">Cadastrar</string>
+    <string name="action_configuração">Configurações</string>
+    <string name="action_sair">Sair</string>
+    <string name="pagina_inicial">Página inicial</string>
+    <string name="sobre_app">Sobre o aplicativo</string>
+    <string name="reclamação">Ajuda e comentários</string>
+    <string name="action_compartilhar">Compartilhar</string>
+    <string name="action_galeria">Galeria</string>
+    <string name="action_codigo">Código de barras</string>
+    <string name="action_sobre">Sobre</string>
+    <string name="contato">Contato</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_tela__principal">Tela_Principal</string>
+
+    <!--Avisos-->
+    <string name="login_sucesso">Login Sucesso</string>
+    <string name="msg_saida">Aperte 2 vezes em seguida para sair</string>
     <string name="aviso_campo_vazio">Preencha todos os campos</string>
     <string name="cadastro_sucesso">Cadastro bem sucedido</string>
+    <string name="função_indisponivel">Função Indisponível no momento</string>
+
+
+
 </resources>
