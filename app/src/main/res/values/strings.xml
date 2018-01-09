@@ -34,6 +34,7 @@
     <string name="contato">Contato</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_tela__principal">Tela_Principal</string>
+    <string name="action_tentar">Tentar novamente</string>
 
     <!--Avisos-->
     <string name="login_sucesso">Login Sucesso</string>
@@ -41,6 +42,9 @@
     <string name="aviso_campo_vazio">Preencha todos os campos</string>
     <string name="cadastro_sucesso">Cadastro bem sucedido</string>
     <string name="função_indisponivel">Função Indisponível no momento</string>
+    <string name="no_internet"><u>Falha de internet</u></string>
+    <string name="aviso_falha_internet">Este aplicativo precisa de internet para funcionar.</string>
+    <string name="aviso_falha_internet2">Verifique que a internet está ligada</string>
 
 
 

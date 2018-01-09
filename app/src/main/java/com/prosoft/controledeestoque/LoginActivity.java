@@ -1,18 +1,28 @@
 package com.prosoft.controledeestoque;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.net.Socket;
+import java.util.logging.SocketHandler;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edEmail, edSenha, cadEmail, cadUsuario, cadSenha,cadTel;
     Button btn_login_entrar, btn_login_cadastrar, btn_cadastrar;
     LinearLayout login_layout, cadastro_layout;
+
+    Dialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         login_layout = findViewById(R.id.layout_login);
         cadastro_layout = findViewById(R.id.layout_cadastro);
 
+        //Verificação de internet
+        myDialog = new Dialog(this);
+        new checkInternet().execute("www.google.com");
+
         //Login layout sempre ativado
         cadastro_layout.setVisibility(View.GONE);
         login_layout.setVisibility(View.VISIBLE);
@@ -47,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 pass = edSenha.getText().toString();
 
                 //Por enquanto, email e senha definidos como admin@admin.com e admin
-                if(!em.isEmpty() && !pass.isEmpty() && em.equals("admin@admin.com") && pass.equals("admin")) {
+                if(!em.isEmpty() && !pass.isEmpty() && em.equals("admin") && pass.equals("admin")) {
                     Toast.makeText(LoginActivity.this, R.string.login_sucesso, Toast.LENGTH_SHORT).show();
                     edEmail.setText("");
                     edSenha.setText("");
@@ -140,7 +154,55 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        new checkInternet().execute("www.google.com");
         cadastro_layout.setVisibility(View.GONE);
         login_layout.setVisibility(View.VISIBLE);
     }
+    //Função para mostrar a falhar de internet
+    public void mostrarDialogo(){
+        TextView fechar;
+        Button tenteDeNovo;
+        myDialog.setContentView(R.layout.no_internet);
+        fechar = myDialog.findViewById(R.id.txtX);
+        tenteDeNovo = myDialog.findViewById(R.id.btn_retry);
+
+        fechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDialog.dismiss();
+            }
+        });
+        tenteDeNovo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDialog.dismiss();
+                new checkInternet().execute("www.google.com");
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
+    public class checkInternet extends AsyncTask<String, Void, Integer>{
+
+        @Override
+        protected Integer doInBackground(String... strings) {
+            Integer result = 0;
+            try{
+                Socket s = new Socket(strings[0], 80);
+                s.close();
+                result = 1;
+            }catch (Exception e){
+                result = 0;
+            }
+            return result;
+        }
+        @Override
+        protected void onPostExecute(Integer result){
+            if(result == 0){
+                mostrarDialogo();
+            }
+        }
+    }
+
 }
