@@ -19,12 +19,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Tela_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    Dialog dialog_sobre;
+    Dialog dialog;
+    String rec_em, rec_msg; //String para reclamação
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class Tela_Principal extends AppCompatActivity
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        dialog_sobre = new Dialog(this);
+        dialog = new Dialog(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -119,14 +121,18 @@ public class Tela_Principal extends AppCompatActivity
         } else if (id == R.id.nav_config) {
             Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
+            //Número 1 - compartilhar
+            //mostrarDialogo(1);
             Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_reclamar) {
-            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+            //Número 2 - Reclamar
+            mostrarDialogo(2);
         } else if(id == R.id.nav_sair) {
             //Chamando a função para sair do aplicativo
             action_sair();
         }else if(id == R.id.nav_sobre) {
-            mostrarDialogo();
+            //Número 3 - Sobre
+            mostrarDialogo(3);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -143,28 +149,61 @@ public class Tela_Principal extends AppCompatActivity
         System.exit(0);
     }
     //Função para mostrar a falhar de internet
-    public void mostrarDialogo(){
+    public void mostrarDialogo(int i){
         ImageView fechar;
-        Button ok;
-        dialog_sobre.setContentView(R.layout.activity_sobre);
-        fechar = dialog_sobre.findViewById(R.id.img_close);
-        ok = dialog_sobre.findViewById(R.id.btn_ok);
+        Button btnA;
 
-        fechar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog_sobre.dismiss();
-            }
-        });
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog_sobre.dismiss();
-            }
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        dialog_sobre.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog_sobre.show();
+        if (i == 1) { //Tela de compartilhar
+            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+        }
+        else if (i == 2) { //Tela de reclamação
+            final EditText recEm, recMsg;
+
+            dialog.setContentView(R.layout.activity_reclamar);
+            fechar = dialog.findViewById(R.id.img_fechar);
+            btnA = dialog.findViewById(R.id.btn_enviar);
+            recEm = dialog.findViewById(R.id.rec_email);
+            recMsg = dialog.findViewById(R.id.rec_msg);
+
+            fechar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            btnA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rec_em = recEm.getText().toString();
+                    rec_msg = recMsg.getText().toString();
+                    if(rec_em.isEmpty() || rec_msg.isEmpty())
+                        Toast.makeText(Tela_Principal.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
+                    else{
+                        Toast.makeText(Tela_Principal.this, R.string.reclamação_enviada, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                }
+            });
+        }
+        else if (i == 3) {//Tela de Sobre
+            dialog.setContentView(R.layout.activity_sobre);
+            fechar = dialog.findViewById(R.id.img_close);
+            btnA = dialog.findViewById(R.id.btn_ok);
+
+            fechar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            btnA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 }

@@ -154,6 +154,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         new checkInternet().execute("www.google.com");
+        edEmail.requestFocus();
         cadastro_layout.setVisibility(View.GONE);
         login_layout.setVisibility(View.VISIBLE);
     }
