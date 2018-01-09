@@ -24,7 +24,7 @@
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="action_configuração">Configurações</string>
     <string name="action_sair">Sair</string>
-    <string name="pagina_inicial">Página inicial</string>
+    <string name="pagina_inicial">Início</string>
     <string name="sobre_app">Sobre o aplicativo</string>
     <string name="reclamação">Ajuda e comentários</string>
     <string name="action_compartilhar">Compartilhar</string>
@@ -35,6 +35,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_tela__principal">Tela_Principal</string>
     <string name="action_tentar">Tentar novamente</string>
+    <string name="action_ok">Ok</string>
 
     <!--Avisos-->
     <string name="login_sucesso">Login Sucesso</string>
@@ -46,6 +47,8 @@
     <string name="aviso_falha_internet">Este aplicativo precisa de internet para funcionar.</string>
     <string name="aviso_falha_internet2">Verifique que a internet está ligada</string>
 
-
+    <string name="nome_empresa">Nome: ProSoft</string>
+    <string name="email_empresa">Email: prosoft@gmail.com</string>
+    <string name="sobre_prosoft">Descrição: Empresa nova, 3 cientistas de computação e muito zelo.</string>
 
 </resources>

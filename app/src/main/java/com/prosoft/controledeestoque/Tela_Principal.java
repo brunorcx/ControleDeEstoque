@@ -1,6 +1,9 @@
 package com.prosoft.controledeestoque;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -15,17 +18,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Tela_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    Dialog dialog_sobre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela__principal);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        dialog_sobre = new Dialog(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +126,7 @@ public class Tela_Principal extends AppCompatActivity
             //Chamando a função para sair do aplicativo
             action_sair();
         }else if(id == R.id.nav_sobre) {
-            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+            mostrarDialogo();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -134,5 +141,30 @@ public class Tela_Principal extends AppCompatActivity
         startActivity(intent);
         finish();
         System.exit(0);
+    }
+    //Função para mostrar a falhar de internet
+    public void mostrarDialogo(){
+        ImageView fechar;
+        Button ok;
+        dialog_sobre.setContentView(R.layout.activity_sobre);
+        fechar = dialog_sobre.findViewById(R.id.img_close);
+        ok = dialog_sobre.findViewById(R.id.btn_ok);
+
+        fechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog_sobre.dismiss();
+            }
+        });
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog_sobre.dismiss();
+            }
+        });
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        dialog_sobre.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog_sobre.show();
     }
 }
