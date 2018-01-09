@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.Socket;
-import java.util.logging.SocketHandler;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edEmail, edSenha, cadEmail, cadUsuario, cadSenha,cadTel;
@@ -187,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Integer doInBackground(String... strings) {
-            Integer result = 0;
+            Integer result;
             try{
                 Socket s = new Socket(strings[0], 80);
                 s.close();
