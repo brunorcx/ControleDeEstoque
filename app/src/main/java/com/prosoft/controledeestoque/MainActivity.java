@@ -1,7 +1,6 @@
 package com.prosoft.controledeestoque;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        im1 = (ImageView) findViewById(R.id.im_one);
+        im1 = findViewById(R.id.im_one);
         im2 = findViewById(R.id.im_two);
         t = findViewById(R.id.txt);
 

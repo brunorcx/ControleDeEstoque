@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.Socket;
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     //Função para mostrar a falhar de internet
     public void mostrarDialogo(){
-        TextView fechar;
+        ImageView fechar;
         Button tenteDeNovo;
         myDialog.setContentView(R.layout.no_internet);
         fechar = myDialog.findViewById(R.id.txtX);

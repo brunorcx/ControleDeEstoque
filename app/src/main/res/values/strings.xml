@@ -36,7 +36,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_tela__principal">Tela_Principal</string>
     <string name="action_tentar">Tentar novamente</string>
-    <string name="action_ok">Ok</string>
+    <string name="action_ok">OK</string>
     <string name="action_enviar">Enviar</string>
 
     <!--Avisos-->
@@ -51,9 +51,17 @@
     <string name="msg_reclamar">Por favor, relatar o problema nos campos embaixo</string>
     <string name="reclamação_enviada">Mensagem enviada</string>
 
+    <!--Descrições-->
+    <string name="fechar">fechar</string>
+    <string name="img">Imagem de android</string>
+    <string name="nada">nada</string>
+    <string name="folha">folha</string>
+
+
     <string name="nome_empresa">Nome: ProSoft</string>
     <string name="email_empresa">Email: prosoft@gmail.com</string>
     <string name="sobre_prosoft">Descrição: Empresa nova, 3 cientistas de computação e muito zelo.</string>
+
 
 
 </resources>
