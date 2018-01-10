@@ -40,8 +40,7 @@
                 android:singleLine="true"
                 android:drawableStart="@android:drawable/ic_dialog_email"
                 android:drawableTint="@color/black"
-                android:drawablePadding="5sp"
-                tools:targetApi="m" />
+                android:drawablePadding="5sp"/>
 
             <EditText
                 android:id="@+id/login_senha"
@@ -51,8 +50,7 @@
                 android:singleLine="true"
                 android:drawableStart="@android:drawable/ic_lock_lock"
                 android:drawableTint="@color/black"
-                android:drawablePadding="5sp"
-                tools:targetApi="m" />
+                android:drawablePadding="5sp"/>
 
             <CheckBox
                 android:id="@+id/chkBtn"
@@ -60,8 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mantenha_logado"
                 android:buttonTint="@color/black"
-                android:padding="5sp"
-                tools:targetApi="lollipop" />
+                android:padding="5sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -119,8 +116,7 @@
                 android:singleLine="true"
                 android:drawableStart="@drawable/ic_p"
                 android:drawableTint="@color/black"
-                android:drawablePadding="5sp"
-                tools:targetApi="m" />
+                android:drawablePadding="5sp"/>
             <EditText
                 android:id="@+id/email_cadastro"
                 style="@style/Campos"
@@ -129,8 +125,7 @@
                 android:singleLine="true"
                 android:drawableStart="@android:drawable/ic_dialog_email"
                 android:drawableTint="@color/black"
-                android:drawablePadding="5sp"
-                tools:targetApi="m" />
+                android:drawablePadding="5sp"/>
 
             <EditText
                 android:id="@+id/senha_cadastro"
@@ -140,8 +135,7 @@
                 android:singleLine="true"
                 android:drawableStart="@android:drawable/ic_lock_lock"
                 android:drawableTint="@color/black"
-                android:drawablePadding="5sp"
-                tools:targetApi="m" />
+                android:drawablePadding="5sp" />
             <EditText
                 android:id="@+id/numero_cadastro"
                 style="@style/Campos"
@@ -150,8 +144,7 @@
                 android:singleLine="true"
                 android:drawableStart="@android:drawable/stat_sys_phone_call"
                 android:drawableTint="@color/black"
-                android:drawablePadding="5sp"
-                tools:targetApi="m" />
+                android:drawablePadding="5sp"/>
         </LinearLayout>
 
         <LinearLayout
