@@ -27,6 +27,7 @@ public class Tela_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Dialog dialog;
     String rec_em, rec_msg; //String para reclamação
+    String pdt_nome, pdt_desc, pdt_qtd, pdt_valor, pdt_codigo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,9 +114,9 @@ public class Tela_Principal extends AppCompatActivity
 
         if (id == R.id.nav_pag_inicial){
             Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
-        }else if (id == R.id.nav_camera) {
-            // Handle the camera action
-            Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_novo) {
+            // Cadastrar novo produto
+            mostrarDialogo(4);
         } else if (id == R.id.nav_gallery) {
             Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_config) {
@@ -200,6 +201,45 @@ public class Tela_Principal extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
+                }
+            });
+        }
+        else if (i == 4) { //Tela de cadastro de novo produto
+            final EditText p_nome, p_des, p_qtd, p_valor, p_codigo;
+
+            dialog.setContentView(R.layout.activity_cadastro_produto);
+
+            p_nome = dialog.findViewById(R.id.pd_nome);
+            p_des = dialog.findViewById(R.id.pd_desc);
+            p_qtd = dialog.findViewById(R.id.pd_qtd);
+            p_valor = dialog.findViewById(R.id.pd_valor);
+            p_codigo = dialog.findViewById(R.id.pd_codigo);
+
+            btnA = dialog.findViewById(R.id.btn_pd_cadastrar);
+            fechar = dialog.findViewById(R.id.pdt_fechar);
+
+            fechar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+
+            btnA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    pdt_nome = p_nome.getText().toString();
+                    pdt_desc = p_des.getText().toString();
+                    pdt_qtd = p_qtd.getText().toString();
+                    pdt_valor = p_valor.getText().toString();
+                    pdt_codigo = p_codigo.getText().toString();
+
+                    if(pdt_nome.isEmpty() || pdt_desc.isEmpty()|| pdt_qtd.isEmpty()|| pdt_valor.isEmpty()|| pdt_codigo.isEmpty())
+                        Toast.makeText(Tela_Principal.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
+                    else{
+                        Toast.makeText(Tela_Principal.this, R.string.produto_cadastrado, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
                 }
             });
         }

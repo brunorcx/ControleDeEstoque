@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_home"
             android:title="@string/pagina_inicial" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/action_codigo" />
+            android:id="@+id/nav_novo"
+            android:icon="@drawable/ic_create_black_24dp"
+            android:title="@string/action_novo_produto" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"

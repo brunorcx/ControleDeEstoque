@@ -11,6 +11,13 @@
     <string name="usuario">nome do usuário</string>
     <string name="msg">digite sua mensagem aqui</string>
 
+    <string name="cadastro_nome">nome do produto</string>
+    <string name="cadastro_descrição">descrição do produto</string>
+    <string name="cadastro_qtd">Qtd:</string>
+    <string name="cadastro_codigo">código do produto</string>
+    <string name="cadastro_valor">Valor(R$):</string>
+    <string name="cadastro_foto">foto do produto</string>
+
     <string name="nome_usuario">John Smith</string>
     <string name="loja">Loja X</string>
     <string name="usuario_email">john_smith@email.com</string>
@@ -38,6 +45,7 @@
     <string name="action_tentar">Tentar novamente</string>
     <string name="action_ok">OK</string>
     <string name="action_enviar">Enviar</string>
+    <string name="action_novo_produto">Novo produto</string>
 
     <!--Avisos-->
     <string name="login_sucesso">Login Sucesso</string>
@@ -50,12 +58,14 @@
     <string name="aviso_falha_internet2">Verifique que a internet está ligada</string>
     <string name="msg_reclamar">Por favor, relatar o problema nos campos embaixo</string>
     <string name="reclamação_enviada">Mensagem enviada</string>
+    <string name="produto_cadastrado">Produto cadastrado</string>
 
     <!--Descrições-->
     <string name="fechar">fechar</string>
     <string name="img">Imagem de android</string>
     <string name="nada">nada</string>
     <string name="folha">folha</string>
+    <string name="novo_produto"><u>Cadastro de Novo Produto</u></string>
 
 
     <string name="nome_empresa">Nome: ProSoft</string>
