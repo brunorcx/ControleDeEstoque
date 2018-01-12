@@ -5,14 +5,22 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.net.Socket;
 
@@ -22,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout login_layout, cadastro_layout;
 
     Dialog myDialog;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
 
         login_layout = findViewById(R.id.layout_login);
         cadastro_layout = findViewById(R.id.layout_cadastro);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Verificação de internet
         myDialog = new Dialog(this);
@@ -59,8 +71,27 @@ public class LoginActivity extends AppCompatActivity {
                 em = edEmail.getText().toString();
                 pass = edSenha.getText().toString();
 
+                //Login atraves do firebase
+                mAuth.signInWithEmailAndPassword(em, pass)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    startActivity(intent);
+
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                                // ...
+                            }
+                        });
+
                 //Por enquanto, email e senha definidos como admin@admin.com e admin
-                if(!em.isEmpty() && !pass.isEmpty() && em.equals("admin") && pass.equals("admin")) {
+                if(!em.isEmpty() && !pass.isEmpty() && em.equals("admin@admin.com") && pass.equals("admin")) {
                     Toast.makeText(LoginActivity.this, R.string.login_sucesso, Toast.LENGTH_SHORT).show();
                     edEmail.setText("");
                     edSenha.setText("");
@@ -69,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
+
                     Toast.makeText(LoginActivity.this, R.string.login_invalido, Toast.LENGTH_SHORT).show();
                     //Pedir atenção a onde teve um erro
                     if(!em.equals("admin@admin.com"))
@@ -97,6 +129,22 @@ public class LoginActivity extends AppCompatActivity {
                 senha = cadSenha.getText().toString();
                 tel = cadTel.getText().toString();
 
+                //Cadastro atraves do Firebase
+                mAuth.createUserWithEmailAndPassword(email, senha)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso, Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Authentication failed",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                 if(nome.isEmpty() ||email.isEmpty() ||senha.isEmpty() || tel.isEmpty())
                     Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
                 else{
@@ -112,8 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                     edSenha.setText("");
                     edEmail.setHint(getString(R.string.email));
                     edSenha.setHint(getString(R.string.senha));
-                    Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso, Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
+
                 }
             }
         });
