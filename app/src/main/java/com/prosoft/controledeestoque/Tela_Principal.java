@@ -23,6 +23,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Tela_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Dialog dialog;
@@ -228,15 +231,26 @@ public class Tela_Principal extends AppCompatActivity
             btnA.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Produto produto = new Produto();
                     pdt_nome = p_nome.getText().toString();
                     pdt_desc = p_des.getText().toString();
                     pdt_qtd = p_qtd.getText().toString();
                     pdt_valor = p_valor.getText().toString();
                     pdt_codigo = p_codigo.getText().toString();
 
+                    produto.setNome(p_nome.getText().toString());
+                    produto.setDescricao(p_des.getText().toString());
+                    produto.setQuantidade(p_qtd.getText().toString());
+                    produto.setValor(p_valor.getText().toString());
+                    produto.setCodigo(p_codigo.getText().toString());
+
                     if(pdt_nome.isEmpty() || pdt_desc.isEmpty()|| pdt_qtd.isEmpty()|| pdt_valor.isEmpty()|| pdt_codigo.isEmpty())
                         Toast.makeText(Tela_Principal.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
                     else{
+                        //Enviando para o banco de dados no firebase versão beta
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference(produto.getDescricao());
+                        myRef.setValue(produto);
                         Toast.makeText(Tela_Principal.this, R.string.produto_cadastrado, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
