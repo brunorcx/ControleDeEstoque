@@ -71,24 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 em = edEmail.getText().toString();
                 pass = edSenha.getText().toString();
 
-                //Login atraves do firebase
-                mAuth.signInWithEmailAndPassword(em, pass)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    startActivity(intent);
-
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                                // ...
-                            }
-                        });
 
                 //Por enquanto, email e senha definidos como admin@admin.com e admin
                 if(!em.isEmpty() && !pass.isEmpty() && em.equals("admin@admin.com") && pass.equals("admin")) {
@@ -101,7 +83,27 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
 
+                    //Login atraves do firebase
+                    mAuth.signInWithEmailAndPassword(em, pass)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        startActivity(intent);
+
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                    // ...
+                                }
+                            });
+
                     Toast.makeText(LoginActivity.this, R.string.login_invalido, Toast.LENGTH_SHORT).show();
+
                     //Pedir atenção a onde teve um erro
                     if(!em.equals("admin@admin.com"))
                         edEmail.requestFocus();
