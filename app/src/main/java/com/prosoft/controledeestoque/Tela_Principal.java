@@ -152,7 +152,7 @@ public class Tela_Principal extends AppCompatActivity
         finish();
         System.exit(0);
     }
-    //Função para mostrar a falhar de internet
+    //Função para mostrar falha de internet
     public void mostrarDialogo(int i){
         ImageView fechar;
         Button btnA;
