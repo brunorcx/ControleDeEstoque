@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 //Por enquanto, email e senha definidos como admin@admin.com e admin
-                if(!em.isEmpty() && !pass.isEmpty() && em.equals("admin@admin.com") && pass.equals("admin")) {
+                if(em.equals("admin@admin.com") && pass.equals("admin")) {
                     Toast.makeText(LoginActivity.this, R.string.login_sucesso, Toast.LENGTH_SHORT).show();
                     edEmail.setText("");
                     edSenha.setText("");
@@ -81,8 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     edSenha.setHint(getString(R.string.senha));
                     startActivity(intent);
                 }
-                else {
-
+                else if(!em.isEmpty() && !pass.isEmpty()){
                     //Login atraves do firebase
                     mAuth.signInWithEmailAndPassword(em, pass)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -95,21 +94,20 @@ public class LoginActivity extends AppCompatActivity {
 
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.makeText(LoginActivity.this, R.string.Login_incorreto,
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                     // ...
                                 }
                             });
-
-                    Toast.makeText(LoginActivity.this, R.string.login_invalido, Toast.LENGTH_SHORT).show();
-
                     //Pedir atenção a onde teve um erro
                     if(!em.equals("admin@admin.com"))
                         edEmail.requestFocus();
                     else if(!pass.equals("admin"))
                         edSenha.requestFocus();
                 }
+                else
+                  Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
             }
         });
         //Botão para criar nova conta
@@ -131,39 +129,42 @@ public class LoginActivity extends AppCompatActivity {
                 senha = cadSenha.getText().toString();
                 tel = cadTel.getText().toString();
 
-                //Cadastro atraves do Firebase
-                mAuth.createUserWithEmailAndPassword(email, senha)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                if(!nome.isEmpty() && !email.isEmpty() && !senha.isEmpty() && !tel.isEmpty()) {
+                  //Cadastro atraves do Firebase
+                  mAuth.createUserWithEmailAndPassword(email, senha)
+                          .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso, Toast.LENGTH_SHORT).show();
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "Authentication failed",
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                              if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso,
+                                        Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                              } else {
+                                Toast.makeText(LoginActivity.this, R.string.cadastro_erro,
+                                        Toast.LENGTH_LONG).show();
+                              }
                             }
-                        });
+                          });
 
-                if(nome.isEmpty() ||email.isEmpty() ||senha.isEmpty() || tel.isEmpty())
-                    Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
-                else{
-                    cadUsuario.setText("");
-                    cadEmail.setText("");
-                    cadSenha.setText("");
-                    cadTel.setText("");
-                    cadUsuario.setHint(R.string.usuario);
-                    cadEmail.setHint(R.string.usuario_email);
-                    cadSenha.setHint(R.string.senha);
-                    cadTel.setHint(R.string.telefone);
-                    edEmail.setText("");
-                    edSenha.setText("");
-                    edEmail.setHint(getString(R.string.email));
-                    edSenha.setHint(getString(R.string.senha));
-
+                  cadUsuario.setText("");
+                  cadEmail.setText("");
+                  cadSenha.setText("");
+                  cadTel.setText("");
+                  cadUsuario.setHint(R.string.usuario);
+                  cadEmail.setHint(R.string.usuario_email);
+                  cadSenha.setHint(R.string.senha);
+                  cadTel.setHint(R.string.telefone);
+                  edEmail.setText("");
+                  edSenha.setText("");
+                  edEmail.setHint(getString(R.string.email));
+                  edSenha.setHint(getString(R.string.senha));
                 }
+                else
+                    Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
+
+
+
             }
         });
     }
