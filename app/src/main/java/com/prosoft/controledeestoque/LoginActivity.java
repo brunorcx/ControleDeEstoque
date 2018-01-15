@@ -21,8 +21,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edEmail, edSenha, cadEmail, cadUsuario, cadSenha,cadTel;
@@ -123,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nome, email, senha, tel;
+                final String nome, email, senha, tel;
                 nome = cadUsuario.getText().toString();
                 email = cadEmail.getText().toString();
                 senha = cadSenha.getText().toString();
@@ -136,7 +140,14 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                               if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
+                                String userID = mAuth.getCurrentUser().getUid();
+                                DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(userID);
+
+                                Map novaEntrada = new HashMap();
+                                novaEntrada.put("Nome",nome);
+                                usuarios_db.setValue(novaEntrada);
+
+                                //FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso,
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
@@ -168,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+  //Fechar app após apertar voltar duas vezes
     Boolean DuasVezes=false;
     @Override
     public void onBackPressed() {
@@ -208,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
         cadastro_layout.setVisibility(View.GONE);
         login_layout.setVisibility(View.VISIBLE);
     }
-    //Função para mostrar a falhar de internet
+    //Função para mostrar falha de internet
     public void mostrarDialogo(){
         ImageView fechar;
         Button tenteDeNovo;
