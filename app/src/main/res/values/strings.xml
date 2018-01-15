@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Controle De Estoque</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -28,7 +27,7 @@
     <string name="entrar">ENTRAR</string>
     <string name="login_invalido">Email/Senha inválido</string>
     <string name="mantenha_logado">Mantenha logado</string>
-    <string name="login_cadastrar">Criar uma conta aqui</string>
+    <string name="login_cadastrar">Crie uma conta aqui</string>
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="action_configuração">Configurações</string>
     <string name="action_sair">Sair</string>
@@ -48,14 +47,16 @@
     <string name="action_novo_produto">Novo produto</string>
 
     <!--Avisos-->
-    <string name="login_sucesso">Login Sucesso</string>
+    <string name="login_sucesso">Logado com sucesso</string>
+    <string name="Login_incorreto">Usuário ou senha incorreto(s).</string>
     <string name="msg_saida">Aperte 2 vezes em seguida para sair</string>
-    <string name="aviso_campo_vazio">Preencha todos os campos</string>
-    <string name="cadastro_sucesso">Cadastro bem sucedido</string>
+    <string name="aviso_campo_vazio">Por favor,preencha todos os campos</string>
+    <string name="cadastro_sucesso">Cadastrado com sucesso</string>
+    <string name="cadastro_erro">Erro no cadastro, tente novamente</string>
     <string name="função_indisponivel">Função Indisponível no momento</string>
     <string name="no_internet"><u>Falha de internet</u></string>
     <string name="aviso_falha_internet">Este aplicativo precisa de internet para funcionar.</string>
-    <string name="aviso_falha_internet2">Verifique que a internet está ligada</string>
+    <string name="aviso_falha_internet2">Verifique se o aparelho tem acesso a internet</string>
     <string name="msg_reclamar">Por favor, relatar o problema nos campos embaixo</string>
     <string name="reclamação_enviada">Mensagem enviada</string>
     <string name="produto_cadastrado">Produto cadastrado</string>
