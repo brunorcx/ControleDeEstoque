@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,9 @@ public class Tela_Principal extends AppCompatActivity
     Dialog dialog;
     String rec_em, rec_msg; //String para reclamação
     String pdt_nome, pdt_desc, pdt_qtd, pdt_valor, pdt_codigo;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,13 @@ public class Tela_Principal extends AppCompatActivity
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        /*TextView user_name = findViewById(R.id.user_name);
+        user_name.setText(user.getDisplayName());
+        TextView user_email = findViewById(R.id.email_text_view);
+        user_email.setText(user.getEmail());*/
         dialog = new Dialog(this);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +69,8 @@ public class Tela_Principal extends AppCompatActivity
 
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     //Esse é para fazer com que a pessoa aperte duas vezes o botão para sair do aplicativo
@@ -88,6 +100,10 @@ public class Tela_Principal extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        TextView user_name = findViewById(R.id.user_name);
+        user_name.setText(user.getDisplayName());
+        TextView user_email = findViewById(R.id.email_text_view);
+        user_email.setText(user.getEmail());
         getMenuInflater().inflate(R.menu.tela__principal, menu);
         return true;
     }
@@ -234,7 +250,6 @@ public class Tela_Principal extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
 
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     Produto produto = new Produto();
                     pdt_nome = p_nome.getText().toString();
