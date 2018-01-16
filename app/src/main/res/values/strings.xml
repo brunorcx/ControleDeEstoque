@@ -72,7 +72,9 @@
     <string name="nome_empresa">Nome: ProSoft</string>
     <string name="email_empresa">Email: prosoft@gmail.com</string>
     <string name="sobre_prosoft">Descrição: Empresa nova, 3 cientistas de computação e muito zelo.</string>
-
+    <string name="nome_da_loja">Nome da Loja</string>
+    <string name="cnpj">CNPJ</string>
+    <string name="proprietario">Proprietario</string>
 
 
 </resources>

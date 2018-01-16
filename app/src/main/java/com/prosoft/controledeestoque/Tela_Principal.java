@@ -100,10 +100,13 @@ public class Tela_Principal extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+        //Atualização de nome e email no menu
         TextView user_name = findViewById(R.id.user_name);
         user_name.setText(user.getDisplayName());
         TextView user_email = findViewById(R.id.email_text_view);
         user_email.setText(user.getEmail());
+
         getMenuInflater().inflate(R.menu.tela__principal, menu);
         return true;
     }
