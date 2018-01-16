@@ -23,6 +23,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -231,6 +233,9 @@ public class Tela_Principal extends AppCompatActivity
             btnA.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                     Produto produto = new Produto();
                     pdt_nome = p_nome.getText().toString();
                     pdt_desc = p_des.getText().toString();
@@ -243,6 +248,9 @@ public class Tela_Principal extends AppCompatActivity
                     produto.setQuantidade(p_qtd.getText().toString());
                     produto.setValor(p_valor.getText().toString());
                     produto.setCodigo(p_codigo.getText().toString());
+                    if (user != null) {
+                        produto.setUsuario(user.getDisplayName()); //Busca a Informação do nome do usuario
+                    }
 
                     if(pdt_nome.isEmpty() || pdt_desc.isEmpty()|| pdt_qtd.isEmpty()|| pdt_valor.isEmpty()|| pdt_codigo.isEmpty())
                         Toast.makeText(Tela_Principal.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText edEmail, edSenha, cadEmail, cadUsuario, cadSenha,cadTel;
+    EditText edEmail, edSenha, cadEmail, cadUsuario, cadSenha, cadTel;
     Button btn_login_entrar, btn_login_cadastrar, btn_cadastrar;
     LinearLayout login_layout, cadastro_layout;
 
@@ -77,15 +79,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 //Por enquanto, email e senha definidos como admin@admin.com e admin
-                if(em.equals("admin@admin.com") && pass.equals("admin")) {
+                if (em.equals("admin@admin.com") && pass.equals("admin")) {
                     Toast.makeText(LoginActivity.this, R.string.login_sucesso, Toast.LENGTH_SHORT).show();
                     edEmail.setText("");
                     edSenha.setText("");
                     edEmail.setHint(getString(R.string.email));
                     edSenha.setHint(getString(R.string.senha));
                     startActivity(intent);
-                }
-                else if(!em.isEmpty() && !pass.isEmpty()){
+                } else if (!em.isEmpty() && !pass.isEmpty()) {
                     //Login atraves do firebase
                     mAuth.signInWithEmailAndPassword(em, pass)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -105,13 +106,12 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                     //Pedir atenção a onde teve um erro
-                    if(!em.equals("admin@admin.com"))
+                    if (!em.equals("admin@admin.com"))
                         edEmail.requestFocus();
-                    else if(!pass.equals("admin"))
+                    else if (!pass.equals("admin"))
                         edSenha.requestFocus();
-                }
-                else
-                  Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
             }
         });
         //Botão para criar nova conta
@@ -133,57 +133,78 @@ public class LoginActivity extends AppCompatActivity {
                 senha = cadSenha.getText().toString();
                 tel = cadTel.getText().toString();
 
-                if(!nome.isEmpty() && !email.isEmpty() && !senha.isEmpty() && !tel.isEmpty()) {
-                  //Cadastro atraves do Firebase
-                  mAuth.createUserWithEmailAndPassword(email, senha)
-                          .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                              if (task.isSuccessful()) {
-                                String userID = mAuth.getCurrentUser().getUid();
-                                DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(userID);
+                if (!nome.isEmpty() && !email.isEmpty() && !senha.isEmpty() && !tel.isEmpty()) {
+                    //Cadastro atraves do Firebase
+                    mAuth.createUserWithEmailAndPassword(email, senha)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        String userID = mAuth.getCurrentUser().getUid();
+                                        DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(userID);
 
-                                Map novaEntrada = new HashMap();
-                                novaEntrada.put("Nome",nome);
-                                usuarios_db.setValue(novaEntrada);
+                                        Map novaEntrada = new HashMap();
+                                        novaEntrada.put("Nome", nome);
+                                        usuarios_db.setValue(novaEntrada);
 
-                                //FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso,
-                                        Toast.LENGTH_SHORT).show();
-                                startActivity(intent);
-                              } else {
-                                Toast.makeText(LoginActivity.this, R.string.cadastro_erro,
-                                        Toast.LENGTH_LONG).show();
-                              }
-                            }
-                          });
+                                        //Aqui é feita a atualização de Dados do Usuario
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                  cadUsuario.setText("");
-                  cadEmail.setText("");
-                  cadSenha.setText("");
-                  cadTel.setText("");
-                  cadUsuario.setHint(R.string.usuario);
-                  cadEmail.setHint(R.string.usuario_email);
-                  cadSenha.setHint(R.string.senha);
-                  cadTel.setHint(R.string.telefone);
-                  edEmail.setText("");
-                  edSenha.setText("");
-                  edEmail.setHint(getString(R.string.email));
-                  edSenha.setHint(getString(R.string.senha));
-                }
-                else
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(nome) //atualização de nome do usuario
+                                                /*.setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))*/
+                                                .build();
+
+                                        user.updateProfile(profileUpdates)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(LoginActivity.this, "Update",
+                                                                    Toast.LENGTH_SHORT).show();
+                                                            Log.d("Login Activt", "User profile updated.");
+                                                        }
+                                                    }
+                                                });
+                                        //...
+                                        Toast.makeText(LoginActivity.this, R.string.cadastro_sucesso,
+                                                Toast.LENGTH_SHORT).show();
+
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, R.string.cadastro_erro,
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
+
+                    cadUsuario.setText("");
+                    cadEmail.setText("");
+                    cadSenha.setText("");
+                    cadTel.setText("");
+                    cadUsuario.setHint(R.string.usuario);
+                    cadEmail.setHint(R.string.usuario_email);
+                    cadSenha.setHint(R.string.senha);
+                    cadTel.setHint(R.string.telefone);
+                    edEmail.setText("");
+                    edSenha.setText("");
+                    edEmail.setHint(getString(R.string.email));
+                    edSenha.setHint(getString(R.string.senha));
+                } else
                     Toast.makeText(LoginActivity.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
-
 
 
             }
         });
     }
-  //Fechar app após apertar voltar duas vezes
-    Boolean DuasVezes=false;
+
+    //Fechar app após apertar voltar duas vezes
+    Boolean DuasVezes = false;
+
     @Override
     public void onBackPressed() {
-        if(DuasVezes){
+        if (DuasVezes) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -195,20 +216,19 @@ public class LoginActivity extends AppCompatActivity {
         cadastro_layout.setVisibility(View.GONE);
         login_layout.setVisibility(View.VISIBLE);
         DuasVezes = true;
-        Thread timer = new Thread(){
+        Thread timer = new Thread() {
             @Override
             public void run() {
-                try{
+                try {
                     sleep(2000);
-                }
-                catch(InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-                finally{
-                    DuasVezes=false;
+                } finally {
+                    DuasVezes = false;
                 }
             }
-        };timer.start();
+        };
+        timer.start();
     }
 
     @Override
@@ -219,8 +239,9 @@ public class LoginActivity extends AppCompatActivity {
         cadastro_layout.setVisibility(View.GONE);
         login_layout.setVisibility(View.VISIBLE);
     }
+
     //Função para mostrar falha de internet
-    public void mostrarDialogo(){
+    public void mostrarDialogo() {
         ImageView fechar;
         Button tenteDeNovo;
         myDialog.setContentView(R.layout.no_internet);
@@ -244,23 +265,24 @@ public class LoginActivity extends AppCompatActivity {
         myDialog.show();
     }
 
-    public class checkInternet extends AsyncTask<String, Void, Integer>{
+    public class checkInternet extends AsyncTask<String, Void, Integer> {
 
         @Override
         protected Integer doInBackground(String... strings) {
             Integer result;
-            try{
+            try {
                 Socket s = new Socket(strings[0], 80);
                 s.close();
                 result = 1;
-            }catch (Exception e){
+            } catch (Exception e) {
                 result = 0;
             }
             return result;
         }
+
         @Override
-        protected void onPostExecute(Integer result){
-            if(result == 0){
+        protected void onPostExecute(Integer result) {
+            if (result == 0) {
                 mostrarDialogo();
             }
         }

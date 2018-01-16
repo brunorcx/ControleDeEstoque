@@ -10,39 +10,56 @@ public class Produto {
     private String quantidade;
     private String valor;
     private String codigo;
+    private String usuario;
 
     //Geters
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
-    public String getDescricao(){
+
+    public String getDescricao() {
         return descricao;
     }
-    public String getQuantidade(){
+
+    public String getQuantidade() {
         return quantidade;
     }
-    public String getValor(){
+
+    public String getValor() {
         return valor;
     }
-    public String getCodigo(){
+
+    public String getCodigo() {
         return codigo;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
     //Seters
-    public void setNome(String pNome){
+    public void setNome(String pNome) {
         nome = pNome;
     }
-    public void setDescricao(String pDescricao){
+
+    public void setDescricao(String pDescricao) {
         descricao = pDescricao;
     }
-    public void setQuantidade(String pQuantidade){
+
+    public void setQuantidade(String pQuantidade) {
         quantidade = pQuantidade;
     }
-    public void setValor(String pValor){
+
+    public void setValor(String pValor) {
         valor = pValor;
     }
-    public void setCodigo(String pCodigo){
+
+    public void setCodigo(String pCodigo) {
         codigo = pCodigo;
+    }
+
+    public void setUsuario(String pUsuario) {
+        usuario = pUsuario;
     }
 
 }
