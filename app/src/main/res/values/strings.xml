@@ -75,6 +75,7 @@
     <string name="nome_da_loja">Nome da Loja</string>
     <string name="cnpj">CNPJ</string>
     <string name="proprietario">Proprietario</string>
+    <string name="nova_loja">Nova Loja</string>
 
 
 </resources>

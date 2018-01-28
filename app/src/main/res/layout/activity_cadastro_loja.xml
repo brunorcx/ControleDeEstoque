@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/bluedark"
-    android:layout_margin="21dp"
-    android:padding="5sp"
+    android:layout_margin="12dp"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,12 +14,12 @@
         android:layout_gravity="center"
         android:gravity="center">
         <TextView
-            android:id="@+id/titulo"
+            android:id="@+id/titulo_loja"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:gravity="start"
-            android:text="@string/novo_produto"
+            android:text="@string/nova_loja"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@android:color/white"/>
@@ -31,12 +30,13 @@
             android:layout_gravity="end"
             android:gravity="end">
             <ImageView
-                android:id="@+id/pdt_fechar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/button_fechar_loja"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/cancel"
                 android:layout_gravity="end"
                 android:gravity="end"
+                android:clickable="true"
                 android:contentDescription="@string/fechar"/>
         </LinearLayout>
     </LinearLayout>
@@ -104,7 +104,7 @@
         android:layout_gravity="center"
         android:gravity="bottom">
         <Button
-            android:id="@+id/btn_pd_cadastrar"
+            android:id="@+id/button_loja_cadastrar"
             android:background="@drawable/button_style_azul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
