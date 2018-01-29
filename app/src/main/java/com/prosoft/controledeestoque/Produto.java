@@ -12,6 +12,8 @@ public class Produto {
     private String codigo;
     private String usuario;
 
+    public void Produto () {} // TODO Fazer construtor
+
     //Geters
     public String getNome() {
         return nome;

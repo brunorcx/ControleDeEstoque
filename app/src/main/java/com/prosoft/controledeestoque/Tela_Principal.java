@@ -283,7 +283,7 @@ public class Tela_Principal extends AppCompatActivity
         } else if (i == 5) { // Tela de cadastro de Lojas
             final EditText lNome, lCnpj, lProprietario, lSenha, lConfirmSenha;
 
-            Loja loja;
+            Loja loja = new Loja();
             dialog.setContentView(R.layout.activity_cadastro_loja);
 
             lNome = dialog.findViewById(R.id.loja_nome);
