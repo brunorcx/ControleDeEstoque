@@ -283,6 +283,7 @@ public class Tela_Principal extends AppCompatActivity
         } else if (i == 5) { // Tela de cadastro de Lojas
             final EditText lNome, lCnpj, lProprietario, lSenha, lConfirmSenha;
 
+            Loja loja;
             dialog.setContentView(R.layout.activity_cadastro_loja);
 
             lNome = dialog.findViewById(R.id.loja_nome);
@@ -312,7 +313,7 @@ public class Tela_Principal extends AppCompatActivity
                         //TODO Enviar o objeto Loja que ainda falta finalizar para o banco de dados
                         //Enviando para o banco de dados no firebase versão beta
                         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        * DatabaseReference myRef = database.getReference("Lojas").child(Loja.getDescricao()); // Salvnado de forma "correta" no banco de dados do firebase //TODO Arrumar onde esta "importadora manaus" colocar o nome da loja variavel
+                        * DatabaseReference myRef = database.getReference("Lojas").child(Loja.getDescricao());
                         * myRef.setValue(produto); // Envia toda a classe para o banco, sem problemas*/
 
                         Toast.makeText(Tela_Principal.this, "Loja Cadastrada com Sucesso", Toast.LENGTH_SHORT).show();
