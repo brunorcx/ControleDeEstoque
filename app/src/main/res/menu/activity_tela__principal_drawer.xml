@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_novo"
             android:icon="@drawable/ic_create_black_24dp"
-            android:title="@string/action_novo_produto" />
+            android:title="@string/action_criar_nova_loja" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"

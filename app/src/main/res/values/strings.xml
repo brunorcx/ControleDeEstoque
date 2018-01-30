@@ -44,7 +44,7 @@
     <string name="action_tentar">Tentar novamente</string>
     <string name="action_ok">OK</string>
     <string name="action_enviar">Enviar</string>
-    <string name="action_novo_produto">Novo produto</string>
+    <string name="action_criar_nova_loja">Criar Nova Loja</string>
 
     <!--Avisos-->
     <string name="login_sucesso">Logado com sucesso</string>

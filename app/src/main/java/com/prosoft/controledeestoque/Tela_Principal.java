@@ -225,7 +225,7 @@ public class Tela_Principal extends AppCompatActivity
                     dialog.dismiss();
                 }
             });
-        } else if (i == 4) { //Tela de cadastro de novo produto
+        } else if (i == 5) { //Tela de cadastro de novo produto
             final EditText p_nome, p_des, p_qtd, p_valor, p_codigo;
 
             dialog.setContentView(R.layout.activity_cadastro_produto);
@@ -272,15 +272,15 @@ public class Tela_Principal extends AppCompatActivity
                     else {
                         //Enviando para o banco de dados no firebase versão beta
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("Importadora Manaus").child(produto.getNome()); // Salvnado de forma "correta" no banco de dados do firebase //TODO Arrumar onde esta "importadora manaus" colocar o nome da loja variavel
-                        myRef.setValue(produto); // Envia toda a classe para o banco, sem problemas
+                        DatabaseReference produtos_db = database.getReference("Importadora Manaus").child(produto.getNome()); // Salvnado de forma "correta" no banco de dados do firebase //TODO Arrumar onde esta "importadora manaus" colocar o nome da loja variavel
+                        produtos_db.setValue(produto); // Envia toda a classe para o banco, sem problemas
 
                         Toast.makeText(Tela_Principal.this, R.string.produto_cadastrado, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 }
             });
-        } else if (i == 5) { // Tela de cadastro de Lojas
+        } else if (i == 4) { // Tela de cadastro de Lojas
             final EditText lNome, lCnpj, lProprietario, lSenha, lConfirmSenha;
 
             Loja loja = new Loja();
