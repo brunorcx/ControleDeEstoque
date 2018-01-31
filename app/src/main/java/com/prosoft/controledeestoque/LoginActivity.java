@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                                         novaEntrada.put("Nome", nome);
                                         usuarios_db.setValue(novaEntrada);
 
+
                                         //Aqui é feita a atualização de Dados do Usuario
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
