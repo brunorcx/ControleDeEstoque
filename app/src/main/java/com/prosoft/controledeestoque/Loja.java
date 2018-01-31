@@ -3,10 +3,15 @@ package com.prosoft.controledeestoque;
 
 public class Loja {
 
+
     private String nome;
     private String cnpj;
-    private String proprietario;
+    private Usuario proprietario;
     private String senha;
+
+
+
+
 
     public String getNome() {
         return nome;
@@ -24,11 +29,11 @@ public class Loja {
         this.cnpj = cnpj;
     }
 
-    public String getProprietario() {
+    public Usuario getProprietario() {
         return proprietario;
     }
 
-    public void setProprietario(String proprietario) {
+    public void setProprietario(Usuario proprietario) {
         this.proprietario = proprietario;
     }
 
