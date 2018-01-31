@@ -4,11 +4,14 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,8 +27,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,17 +48,12 @@ public class Tela_Principal extends AppCompatActivity
   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference().child("Usuarios");
   public String nomeUsuario;
-
-
-
-
-
-
-
-
+  public String lojaUsuario = "Loja X";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_tela__principal);
     Toolbar toolbar = findViewById(R.id.toolbar);
@@ -62,8 +63,9 @@ public class Tela_Principal extends AppCompatActivity
 //  Criado um snpashot dos usuarios no banco do firebase, anteriormente tinha feito dentro do menu
 //  para criar uma nova loja, contudo é precisa de alguns segundos para salvar o snapshot, assim,
 //  Foi movido para já retirar um snapshot quando é criada a tela principal, caso seja necessário
-//  acessar mais alguma informação do firebase já está aqui todas as informações guardadas
-    DatabaseReference usuario = usuarios_db.child(user.getUid());
+//  acessar mais alguma informação do firebase ficam aqui todas as informações guardadas
+    final DatabaseReference usuario = usuarios_db.child(user.getUid());
+
     usuario.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,7 +81,6 @@ public class Tela_Principal extends AppCompatActivity
 
       }
     });
-
 
     dialog = new Dialog(this);
 
@@ -133,13 +134,19 @@ public class Tela_Principal extends AppCompatActivity
     }
   }
 
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
 
+
     //Atualização de nome e email no menu
     TextView user_name = findViewById(R.id.user_name);
     user_name.setText(user.getDisplayName());
+    //TODO: Nome do usuário não aparece durante o cadastro,somente na segunda vez que é feito o login
+
+    TextView loja_name = findViewById(R.id.loja_name);
+    loja_name.setText(lojaUsuario);
     TextView user_email = findViewById(R.id.email_text_view);
     user_email.setText(user.getEmail());
 
@@ -152,6 +159,7 @@ public class Tela_Principal extends AppCompatActivity
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
+
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
@@ -170,6 +178,8 @@ public class Tela_Principal extends AppCompatActivity
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     // Handle navigation view item clicks here.
     int id = item.getItemId();
+
+
 
     if (id == R.id.nav_pag_inicial) {
       Toast.makeText(this, R.string.função_indisponivel, Toast.LENGTH_SHORT).show();
