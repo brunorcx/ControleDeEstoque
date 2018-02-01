@@ -38,6 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Tela_Principal extends AppCompatActivity
@@ -46,8 +47,9 @@ public class Tela_Principal extends AppCompatActivity
   String rec_em, rec_msg; //String para reclamação
   String pdt_nome, pdt_desc, pdt_qtd, pdt_valor, pdt_codigo;
   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+  DatabaseReference lojas_db = FirebaseDatabase.getInstance().getReference().child("Lojas");
   DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference().child("Usuarios");
-  public String nomeUsuario;
+  public String nomeUsuario=" ";
   public String lojaUsuario = "Loja X";
 
   @Override
@@ -358,15 +360,35 @@ public class Tela_Principal extends AppCompatActivity
                   || lSenha.getText().toString().isEmpty() || lConfirmSenha.getText().toString().isEmpty())
             Toast.makeText(Tela_Principal.this, R.string.aviso_campo_vazio, Toast.LENGTH_SHORT).show();
           else {
-            //TODO Enviar o objeto Loja que ainda falta finalizar para o banco de dados
+            if (lSenha.getText().toString().equals(lConfirmSenha.getText().toString())) {
+              //TODO Enviar o objeto Loja que ainda falta finalizar para o banco de dados
 
-            //Enviando para o banco de dados no firebase versão beta
+
+              String lojasID = lojas_db.push().getKey();//Gerar um ID único
+              DatabaseReference lojas_db = FirebaseDatabase.getInstance().getReference().child("Lojas").child(lojasID);//Insere nova Loja ID
+
+              Map novaEntrada = new HashMap();
+              novaEntrada.put("Nome", lNome.getText().toString());
+              novaEntrada.put("Proprietário",nomeUsuario);//TODO:Gravar em uma ordem mais intuitiva
+              novaEntrada.put("CNPJ", lCnpj.getText().toString());
+              novaEntrada.put("Senha", lSenha.getText().toString());//TODO: Criptografar a senha
+
+              lojas_db.setValue(novaEntrada);
+
+
+              //Enviando para o banco de dados no firebase versão beta
                         /*FirebaseDatabase database = FirebaseDatabase.getInstance();
                         * DatabaseReference myRef = database.getReference("Lojas").child(Loja.getDescricao());
                         * myRef.setValue(produto); // Envia toda a classe para o banco, sem problemas*/
 
-            Toast.makeText(Tela_Principal.this, "Loja Cadastrada com Sucesso", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
+              Toast.makeText(Tela_Principal.this, "Loja Cadastrada com Sucesso", Toast.LENGTH_SHORT).show();
+              dialog.dismiss();
+            }
+            else{
+              Toast.makeText(Tela_Principal.this, "Senhas diferentes, por favor digite novamente", Toast.LENGTH_SHORT).show();
+              dialog.dismiss();
+            }
+
           }
         }
       });

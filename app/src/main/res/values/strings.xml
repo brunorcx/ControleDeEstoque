@@ -76,6 +76,8 @@
     <string name="cnpj">CNPJ</string>
     <string name="proprietario">Proprietario</string>
     <string name="nova_loja">Nova Loja</string>
+    <string name="senha_loja">Senha</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
 
 
 </resources>
