@@ -5,6 +5,7 @@ package com.prosoft.controledeestoque;
  */
 
 public class Produto {
+
     private String nome;
     private String descricao;
     private String quantidade;

@@ -1,17 +1,12 @@
 package com.prosoft.controledeestoque;
 
-
 public class Loja {
-
 
     private String nome;
     private String cnpj;
     private Usuario proprietario;
     private String senha;
-
-
-
-
+    private Produto produto;
 
     public String getNome() {
         return nome;
@@ -43,5 +38,13 @@ public class Loja {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 }
