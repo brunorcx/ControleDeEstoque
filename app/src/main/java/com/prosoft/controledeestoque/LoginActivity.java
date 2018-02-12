@@ -128,10 +128,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String nome, email, senha, tel;
+                final Usuario usuario = new Usuario();
+
                 nome = cadUsuario.getText().toString();
                 email = cadEmail.getText().toString();
                 senha = cadSenha.getText().toString();
                 tel = cadTel.getText().toString();
+
+                usuario.setNome(nome);
+                usuario.setEmail(email);
+                usuario.setTelefone(tel);
 
                 if (!nome.isEmpty() && !email.isEmpty() && !senha.isEmpty() && !tel.isEmpty()) {
                     //Cadastro atraves do Firebase
@@ -141,12 +147,12 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         String userID = mAuth.getCurrentUser().getUid();
-                                        DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(userID);
+                                        DatabaseReference usuarios_db = FirebaseDatabase.getInstance().getReference("Usuarios").child(userID);
 
+                                        //Aqui é feita a atualização de Dados do Usuario no banco de dados
                                         Map novaEntrada = new HashMap();
-                                        novaEntrada.put("Nome", nome);
+                                        novaEntrada.put(usuario.getNome(), usuario);
                                         usuarios_db.setValue(novaEntrada);
-
 
                                         //Aqui é feita a atualização de Dados do Usuario
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
